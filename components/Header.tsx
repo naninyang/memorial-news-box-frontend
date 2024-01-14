@@ -7,7 +7,6 @@ import { images } from './images';
 
 const Container = styled.header({
   backgroundColor: 'var(--bg-primary-opacity)',
-  backdropFilter: `saturate(180%) blur(${rem(20)})`,
   position: 'fixed',
   top: 0,
   left: 0,
@@ -103,9 +102,8 @@ const Menu = styled.nav({
   display: 'flex',
   width: '100%',
   height: '100dvh',
-  backdropFilter: `saturate(180%) blur(${rem(20)})`,
   transition: 'all .4s cubic-bezier(.4,0,.2,1)',
-  background: 'rgba(0, 0, 0, .7)',
+  background: 'rgba(0, 0, 0, .9)',
   opacity: 0,
   '&.expanded': {
     opacity: 1,
