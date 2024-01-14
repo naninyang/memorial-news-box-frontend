@@ -11,7 +11,7 @@
 
 ## 사용된 주요 기술
 
-### Frontend - This repo
+### Frontend
 
 - Next.js
 - react-device-detect
@@ -26,20 +26,29 @@
 - PWA
 - SWR w/ useSWRInfinite
 - Notion Client
+- Strapi API
+- API: Fetch, Axios 혼용
+- Node 18
+- vercel deployment
 
 ### Web Opengraph Scrap API Server
 
+- Next.js
+- TypeScript
+- Fetch with Node 18
 - iconv
-- cheerio (NAVER 링크 미리보기 & Twitter 트윗 링크 미리보기)
-- open-graph-scraper (Preview 탭에서 링크 미리보기)
+- cheerio
+- vercel deployment
 
-### Backend (숏뷰뉴스와 같은 서버 사용)
+### Backend
 
 - AWS EC2
+- GCC Compute Engine
 - Nginx
+- PM2
 - MariaDB
+- Node 20 with fnm
 - Strapi
-- Github Actions
 
 ## Troubleshooting
 
@@ -58,8 +67,6 @@
   - 의외로 삭제하거나 비공개로 전환되는 유튜브 영상 기사가 꽤 발생함
 - NAVER 뉴스에서 기사가 언론사 요청으로 삭제된 경우 자동으로 해당 article 걸러내기
   - YouTube 영상 기사보다는 삭제되는 경향이 드물지만 없는 건 아님
-
-> 트윗은 삭제된 트윗인 경우 수동으로 처리할 수 밖에 없음
 
 ## Supported PWA App. Download
 
@@ -93,13 +100,21 @@ MS Windows, Apple macOS, Android, iOS, iPadOS 등 대부분의 모던 디바이�
 
 또한 cheerio를 사용하여 가져온 데이터는 어떠한 데이터베이스로도 저장되지 않습니다. 모든 데이터는 캐싱이 되지만 서버에 저장되지 않고 사용자의 웹브라우저 또는 앱의 쿠키 및 로컬스토리지 한정하여 저장됩니다.
 
-### Twitter(X)
+### 만평
 
-트위터에서 Opengraph를 지원하지 않기에 유저 아이디, 트윗 내용은 큐레이터가 수동으로 수집(Puppeteer를 사용해서 강제로 가져올 수 있지만 기억뉴스상자 백엔드 서버 리소스를 지나치게 잡아먹는 문제가 있어서 사용하지 않음)하며 트윗에 포함된 링크의 Opengraph는 cheerio를 사용하여 가져옵니다. 링크의 웹사이트가 CSR(Client Server Rendering)인 경우 가져오지 않습니다.
+다음의 뉴스 웹사이트 기준으로 만평을 가져옵니다.
 
-가져오려는 대상자의 웹서버에 SSL 관련 이슈가 있을 때에도 가져오지 않습니다.
+- 한겨례신문
+- 경향신문
+- 오마이뉴스
+- 비건뉴스
+- 민중의소리
 
-트윗에 포함된 이미지는 별도 저장하지 않고 트윗 서버에서 직접 가져오므로 트윗이 삭제되거나 계정이 플텍 계정으로 전환이 되면 이미지는 404가 됩니다. 현재는 이런 경우 수동으로 지웁니다.
+모든 데이터는 수동으로 가져오고, 큐레이터의 의견은 들어가지 않습니다.
+
+만평 이미지를 직접 기억뉴스상자 서버에 저장 후 가져오기 때문에 만평이 원 링크에서 삭제가 됐을 시에도 사라지지 않습니다.
+
+UX는 NAVER의 링크 미리보기 UX와 동일합니다.
 
 ## 주의사항 및 저작권
 
