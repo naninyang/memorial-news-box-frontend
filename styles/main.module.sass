@@ -11,6 +11,43 @@
       gap: rem(100)
       padding-bottom: rem(100)
 
+    h1
+      display: flex
+      justify-content: center
+
+      span
+        +screen-reader-only
+
+      i
+        display: block
+        position: relative
+        width: rem(267)
+        height: rem(88)
+
+        svg
+          position: absolute
+
+          &.svg1, &.svg4
+            left: 0
+
+          &.svg1
+            top: 0
+
+          &.svg2, &.svg3
+            top: 0
+
+          &.svg2
+            left: rem(60)
+            animation: svg2 1s cubic-bezier(.4,0,.2,1)
+
+          &.svg3
+            left: rem(127)
+            animation: svg3 2s cubic-bezier(.4,0,.2,1)
+
+          &.svg4
+            bottom: 0
+            animation: svg4 3s cubic-bezier(.4,0,.2,1)
+
     .description
       display: flex
       flex-direction: column
@@ -216,3 +253,34 @@
         width: rem(32)
         height: rem(32)
         vertical-align: bottom
+
+@keyframes svg2
+  0%
+    opacity: 0
+    transform: translateY(rem(-14))
+
+  100%
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes svg3
+  0%
+    opacity: 0
+
+  50%
+    opacity: 0
+    transform: translateX(rem(-14))
+
+  100%
+    opacity: 1
+    transform: translateX(0)
+
+@keyframes svg4
+  0%
+    opacity: 0
+
+  66%
+    opacity: 0
+
+  100%
+    opacity: 1

@@ -4,8 +4,6 @@ export const modalContainer = {
   overlay: {
     zIndex: 1070,
     backgroundColor: `rgba(0, 0, 0, .7)`,
-    backdropFilter: `saturate(180%) blur(${rem(20)})`,
-    WebkitBackdropFilter: `saturate(180%) blur(${rem(20)})`,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

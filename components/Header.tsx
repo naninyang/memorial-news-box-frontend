@@ -7,6 +7,8 @@ import { images } from './images';
 
 const Container = styled.header({
   backgroundColor: 'var(--bg-primary-opacity)',
+  backdropFilter: `saturate(180%) blur(${rem(20)})`,
+  WebkitBackdropFilter: `saturate(180%) blur(${rem(20)})`,
   position: 'fixed',
   top: 0,
   left: 0,

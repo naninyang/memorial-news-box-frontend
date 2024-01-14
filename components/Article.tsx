@@ -83,7 +83,7 @@ const articleDetail: React.FC<articleProps> = ({ articleItem }) => {
     }
   };
 
-  const [naverData, setNaverData] = useState<DataResponse[]>([]);
+  const [naverCommentData, setNaverCommentData] = useState<DataResponse[]>([]);
   const fetchNaverData = async () => {
     try {
       const response = articleItem?.newsMetaData
@@ -91,7 +91,7 @@ const articleDetail: React.FC<articleProps> = ({ articleItem }) => {
         : await axios.get(
             `/api/comments?collection=naver-entertainment-${process.env.NODE_ENV}&idx=${articleItem?.idx}`,
           );
-      setNaverData(Array.isArray(response.data) ? response.data : [response.data]);
+      setNaverCommentData(Array.isArray(response.data) ? response.data : [response.data]);
     } catch (error) {
       console.error('Error fetching page info:', error);
     }
@@ -185,10 +185,10 @@ const articleDetail: React.FC<articleProps> = ({ articleItem }) => {
                     </button>
                   </fieldset>
                 </form>
-                {naverData && (
+                {naverCommentData && (
                   <div className={commentStyles.comments}>
-                    <strong>댓글 {naverData.length}개</strong>
-                    {naverData.map((comment, index) => (
+                    <strong>댓글 {naverCommentData.length}개</strong>
+                    {naverCommentData.map((comment, index) => (
                       <div key={index} className={commentStyles.comment}>
                         <div className={commentStyles.user}>
                           <cite>{comment.username}</cite>

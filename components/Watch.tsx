@@ -85,12 +85,12 @@ const watchDetail: React.FC<watchProps> = ({ watchNews }) => {
     }
   };
 
-  const [youtubeData, setYoutubeData] = useState<DataResponse[]>([]);
+  const [youtubeCommentData, setYoutubeCommentData] = useState<DataResponse[]>([]);
   const fetchYoutubeData = async () => {
     try {
       const response = await fetch(`/api/comments?collection=youtube-memorial`);
       const responseData = await response.json();
-      setYoutubeData(responseData.data);
+      setYoutubeCommentData(responseData.data);
     } catch (error) {
       console.error('Error fetching page info:', error);
     }
@@ -158,10 +158,10 @@ const watchDetail: React.FC<watchProps> = ({ watchNews }) => {
                       </button>
                     </fieldset>
                   </form>
-                  {youtubeData && (
+                  {youtubeCommentData && (
                     <div className={commentStyles.comments}>
-                      <strong>댓글 {youtubeData.length}개</strong>
-                      {youtubeData.map((comment, index) => (
+                      <strong>댓글 {youtubeCommentData.length}개</strong>
+                      {youtubeCommentData.map((comment, index) => (
                         <div key={index} className={commentStyles.comment}>
                           <div className={commentStyles.user}>
                             <cite>{comment.username}</cite>
