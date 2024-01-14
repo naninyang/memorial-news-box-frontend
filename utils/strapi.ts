@@ -75,6 +75,31 @@ export async function getNaverNewsData(start?: number, count?: number) {
   return fullData;
 }
 
+export async function getEditorialData(start?: number, count?: number) {
+  const response = await fetch(
+    `${process.env.STRAPI_URL}/api/editorial-memorials?sort[0]=id:desc&pagination[page]=${start}&pagination[pageSize]=${count}`,
+    {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${process.env.STRAPI_BEARER_TOKEN}`,
+      },
+    },
+  );
+  const data = await response.json();
+  const filesData = data.data;
+  const rowsData: NaverItemsData[] = filesData.map((data: any) => ({
+    ida: `${data.id}`,
+    idx: `${formatDate(data.attributes.createdAt)}${data.id}`,
+    title: data.attributes.title,
+    org: data.attributes.org,
+    thumbnail: data.attributes.thumbnail,
+    created: data.attributes.created,
+    articleNumber: data.attributes.articleNumber,
+  }));
+
+  return rowsData;
+}
+
 async function fetchArticleMetadata(url: string) {
   try {
     const response = await fetch(`https://naver-news-opengraph.vercel.app/api/og?url=${encodeURIComponent(url)}`);

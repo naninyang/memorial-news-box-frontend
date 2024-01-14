@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Seo from '@/components/Seo';
 import PageName from '@/components/PageName';
-import ArticlesItem from './item';
-import styles from '@/styles/articles.module.sass';
+import EditorialItem from './item';
+import styles from '@/styles/editorials.module.sass';
 
 function Articles() {
   const timestamp = Date.now();
 
   useEffect(() => {
     localStorage.removeItem('currentPage');
-    localStorage.setItem('currentPage', 'articles');
+    localStorage.setItem('currentPage', 'editorials');
   }, []);
 
   return (
-    <main className={styles.articles}>
+    <main className={styles.editorials}>
       <Seo
-        pageTitle="네이버 뉴스"
-        pageDescription="내가 기억해야 할 뉴스"
+        pageTitle="만평보기"
+        pageDescription="내가 봐야 할 만평"
         pageImg={`https://memorial.dev1stud.io/og-image.png?ts=${timestamp}`}
       />
-      <PageName pageName="네이버 뉴스" />
+      <PageName pageName="만평보기" />
       <div className={styles.list}>
-        <ArticlesItem />
+        <EditorialItem />
       </div>
     </main>
   );
