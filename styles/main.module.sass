@@ -34,19 +34,22 @@
 
           +mq(minLarge)
             gap: rem(17)
+            +coln
+            width: rem(375)
 
         &::before
           content: ''
           display: block
           margin: 0 auto
           border: 1px solid var(--border)
-          border-radius: vw(15, 320)
+          border-radius: vw(7, 320)
           width: 100%
           max-width: rem(540)
 
           +mq(minLarge)
+            +coln
             margin: 0
-            border-radius: rem(15)
+            border-radius: rem(7)
 
         h2
           display: flex
@@ -123,24 +126,24 @@
               body &, body[data-theme="light"] &
                 background: url('/desktop-naver-light.webp') no-repeat 50% 50%/contain
 
-        &[data-twitter]
+        &[data-editorial]
           &::before
-            aspect-ratio: 645 / 912.5
+            aspect-ratio: 646 / 568
 
             body[data-theme="dark"] &
-              background: url('/mobile-twitter-dark.webp') no-repeat 50% 50%/contain
+              background: url('/mobile-editorial-dark.webp') no-repeat 50% 50%/contain
 
             body &, body[data-theme="light"] &
-              background: url('/mobile-twitter-light.webp') no-repeat 50% 50%/contain
+              background: url('/mobile-editorial-light.webp') no-repeat 50% 50%/contain
 
             +mq(minLarge)
-              aspect-ratio: 1121 / 753
+              aspect-ratio: 1168 / 768
 
               body[data-theme="dark"] &
-                background: url('/desktop-twitter-dark.webp') no-repeat 50% 50%/contain
+                background: url('/desktop-editorial-dark.webp') no-repeat 50% 50%/contain
 
               body &, body[data-theme="light"] &
-                background: url('/desktop-twitter-light.webp') no-repeat 50% 50%/contain
+                background: url('/desktop-editorial-light.webp') no-repeat 50% 50%/contain
 
   dl
     border-top: 1px solid var(--border)
