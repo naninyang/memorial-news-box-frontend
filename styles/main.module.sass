@@ -33,6 +33,19 @@
           &.svg1
             top: 0
 
+            path
+              &:nth-of-type(1), &:nth-of-type(2)
+                body[data-theme="dark"] &
+                  fill: #F8E559
+
+              &:nth-of-type(3)
+                body[data-theme="dark"] &
+                  fill: #EEF5FF
+
+              &:nth-of-type(4), &:nth-of-type(5)
+                body[data-theme="dark"] &
+                  fill: #86B6F6
+
           &.svg2, &.svg3
             top: 0
 
@@ -40,13 +53,36 @@
             left: rem(60)
             animation: svg2 1s cubic-bezier(.4,0,.2,1)
 
+            path
+              body[data-theme="dark"] &
+                fill: #B4D4FF
+
           &.svg3
             left: rem(127)
             animation: svg3 2s cubic-bezier(.4,0,.2,1)
 
+            path
+              body[data-theme="dark"] &
+                fill: #EEF5FF
+
           &.svg4
             bottom: 0
             animation: svg4 3s cubic-bezier(.4,0,.2,1)
+
+            path
+              &:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(4), &:nth-of-type(5), &:nth-of-type(6), &:nth-of-type(7)
+                body[data-theme="dark"] &
+                  fill: #B4D4FF
+
+            path
+              &:nth-of-type(8)
+                body[data-theme="dark"] &
+                  fill: #86B6F6
+
+            path
+              &:nth-of-type(9), &:nth-of-type(10), &:nth-of-type(11), &:nth-of-type(12), &:nth-of-type(13), &:nth-of-type(14), &:nth-of-type(15), &:nth-of-type(16)
+                body[data-theme="dark"] &
+                  fill: #EEF5FF
 
     .description
       display: flex
