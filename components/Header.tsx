@@ -123,7 +123,7 @@ const MenuContainer = styled.div({
   padding: `calc(env(safe-area-inset-top) + ${rem(10)}) calc(env(safe-area-inset-right) + ${rem(
     25,
   )}) calc(env(safe-area-inset-bottom) + ${rem(25)}) ${rem(25)}`,
-  width: rem(270),
+  width: rem(320),
   '.expanded &': {
     transform: `translateX(0)`,
     opacity: 1,
@@ -278,15 +278,6 @@ const Close = styled.div({
   },
 });
 
-const Postype = styled.i({
-  'body[data-theme="dark"] &': {
-    background: `url(${images.services.postypeLight}) no-repeat 50% 50%/contain`,
-  },
-  'body &, body[data-theme="light"] &': {
-    background: `url(${images.services.postypeDark}) no-repeat 50% 50%/contain`,
-  },
-});
-
 const Develog = styled.i({
   'body[data-theme="dark"] &': {
     background: `url(${images.services.develogLight}) no-repeat 50% 50%/contain`,
@@ -433,9 +424,7 @@ export default function Header() {
         {router.pathname === '/' ||
         router.pathname === '/watches' ||
         router.pathname === '/articles' ||
-        router.pathname === '/periodt' ||
-        router.pathname === '/history' ||
-        router.pathname === '/insteads' ? undefined : (
+        router.pathname === '/editorials' ? undefined : (
           <s />
         )}
         <Primary>
@@ -515,7 +504,7 @@ export default function Header() {
                 </AnchorLink>
               </li>
               <li>
-                <AnchorLink href="https://github.com/naninyang/short-view-new-frontend">
+                <AnchorLink href="https://github.com/naninyang/memorial-news-box-frontend">
                   <Github />
                   <span>깃헙 저장소</span>
                 </AnchorLink>

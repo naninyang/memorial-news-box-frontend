@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { AppProps } from 'next/app';
-import { Aleo, Hahmlet } from 'next/font/google';
+import { Aleo, Hahmlet, Lato } from 'next/font/google';
 import Script from 'next/script';
 import Header from '@/components/Header';
 import Services from '@/components/Services';
@@ -16,6 +16,11 @@ const fontAleo = Aleo({
 const fontHahmlet = Hahmlet({
   weight: ['100', '300', '400', '700', '900'],
   subsets: ['vietnamese'],
+});
+
+const fontLato = Lato({
+  weight: ['100', '300', '400', '700', '900'],
+  subsets: ['latin'],
 });
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -104,6 +109,9 @@ export default function App({ Component, pageProps }: AppProps) {
               'Nanum Gothic',
               'Malgun Gothic',
               sans-serif;
+          }
+          nav a {
+            font-family: ${fontLato.style.fontFamily};
           }
         `}
       </style>

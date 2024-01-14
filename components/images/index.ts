@@ -75,26 +75,12 @@ export const images = {
       defaultDark: require('./tab/youtube/defaultDark.svg'),
       defaultLight: require('./tab/youtube/defaultLight.svg'),
     },
-    twitter: {
-      active: require('./tab/twitter/active.svg'),
-      dark: require('./tab/twitter/dark.svg'),
-      light: require('./tab/twitter/light.svg'),
-      defaultDark: require('./tab/twitter/defaultDark.svg'),
-      defaultLight: require('./tab/twitter/defaultLight.svg'),
-    },
-    history: {
-      active: require('./tab/history/active.svg'),
-      dark: require('./tab/history/dark.svg'),
-      light: require('./tab/history/light.svg'),
-      defaultDark: require('./tab/history/defaultDark.svg'),
-      defaultLight: require('./tab/history/defaultLight.svg'),
-    },
-    preview: {
-      active: require('./tab/preview/active.svg'),
-      dark: require('./tab/preview/dark.svg'),
-      light: require('./tab/preview/light.svg'),
-      defaultDark: require('./tab/preview/defaultDark.svg'),
-      defaultLight: require('./tab/preview/defaultLight.svg'),
+    editorial: {
+      active: require('./tab/editorial/active.svg'),
+      dark: require('./tab/editorial/dark.svg'),
+      light: require('./tab/editorial/light.svg'),
+      defaultDark: require('./tab/editorial/defaultDark.svg'),
+      defaultLight: require('./tab/editorial/defaultLight.svg'),
     },
   },
 };

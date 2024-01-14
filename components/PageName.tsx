@@ -24,12 +24,12 @@ const Container = styled.h2({
     display: 'block',
     width: rem(25),
     height: rem(25),
-    '&[data-page="/periodt"]': {
+    '&[data-page="/watches"]': {
       'body[data-theme="dark"] &': {
-        background: `url(${images.tab.twitter.defaultLight}) no-repeat 50% 50%/contain`,
+        background: `url(${images.tab.youtube.defaultLight}) no-repeat 50% 50%/contain`,
       },
       'body &, body[data-theme="light"] &': {
-        background: `url(${images.tab.twitter.defaultDark}) no-repeat 50% 50%/contain`,
+        background: `url(${images.tab.youtube.defaultDark}) no-repeat 50% 50%/contain`,
       },
     },
     '&[data-page="/articles"]': {
@@ -40,28 +40,12 @@ const Container = styled.h2({
         background: `url(${images.tab.naver.defaultDark}) no-repeat 50% 50%/contain`,
       },
     },
-    '&[data-page="/watches"]': {
+    '&[data-page="/editorials"]': {
       'body[data-theme="dark"] &': {
-        background: `url(${images.tab.youtube.defaultLight}) no-repeat 50% 50%/contain`,
+        background: `url(${images.tab.editorial.defaultLight}) no-repeat 50% 50%/contain`,
       },
       'body &, body[data-theme="light"] &': {
-        background: `url(${images.tab.youtube.defaultDark}) no-repeat 50% 50%/contain`,
-      },
-    },
-    '&[data-page="/history"]': {
-      'body[data-theme="dark"] &': {
-        background: `url(${images.tab.history.defaultLight}) no-repeat 50% 50%/contain`,
-      },
-      'body &, body[data-theme="light"] &': {
-        background: `url(${images.tab.history.defaultDark}) no-repeat 50% 50%/contain`,
-      },
-    },
-    '&[data-page="/insteads"]': {
-      'body[data-theme="dark"] &': {
-        background: `url(${images.tab.preview.defaultLight}) no-repeat 50% 50%/contain`,
-      },
-      'body &, body[data-theme="light"] &': {
-        background: `url(${images.tab.preview.defaultDark}) no-repeat 50% 50%/contain`,
+        background: `url(${images.tab.editorial.defaultDark}) no-repeat 50% 50%/contain`,
       },
     },
   },

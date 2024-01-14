@@ -39,12 +39,12 @@ const Container = styled.div({
       background: `url(${images.tab.naver.defaultDark}) no-repeat 50% 50%/contain`,
     },
   },
-  '& div[data-twitter] h2 i': {
+  '& div[data-editorial] h2 i': {
     'body[data-theme="dark"] &': {
-      background: `url(${images.tab.twitter.defaultLight}) no-repeat 50% 50%/contain`,
+      background: `url(${images.tab.editorial.defaultLight}) no-repeat 50% 50%/contain`,
     },
     'body &, body[data-theme="light"] &': {
-      background: `url(${images.tab.twitter.defaultDark}) no-repeat 50% 50%/contain`,
+      background: `url(${images.tab.editorial.defaultDark}) no-repeat 50% 50%/contain`,
     },
   },
 });

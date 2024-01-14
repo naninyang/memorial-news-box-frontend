@@ -68,28 +68,12 @@ const Nav = styled.nav({
           background: `url(${images.tab.naver.dark}) no-repeat 50% 50%/contain`,
         },
       },
-      '&[data-icon="twitter"]': {
+      '&[data-icon="editorial"]': {
         'body[data-theme="dark"] &': {
-          background: `url(${images.tab.twitter.light}) no-repeat 50% 50%/contain`,
+          background: `url(${images.tab.editorial.light}) no-repeat 50% 50%/contain`,
         },
         'body &, body[data-theme="light"] &': {
-          background: `url(${images.tab.twitter.dark}) no-repeat 50% 50%/contain`,
-        },
-      },
-      '&[data-icon="history"]': {
-        'body[data-theme="dark"] &': {
-          background: `url(${images.tab.history.light}) no-repeat 50% 50%/contain`,
-        },
-        'body &, body[data-theme="light"] &': {
-          background: `url(${images.tab.history.dark}) no-repeat 50% 50%/contain`,
-        },
-      },
-      '&[data-icon="preview"]': {
-        'body[data-theme="dark"] &': {
-          background: `url(${images.tab.preview.light}) no-repeat 50% 50%/contain`,
-        },
-        'body &, body[data-theme="light"] &': {
-          background: `url(${images.tab.preview.dark}) no-repeat 50% 50%/contain`,
+          background: `url(${images.tab.editorial.dark}) no-repeat 50% 50%/contain`,
         },
       },
     },
@@ -116,19 +100,9 @@ const MenuItem = styled.li<{ currentRouter?: boolean }>(({ currentRouter }) => (
       '&[data-icon="naver"]': {
         background: currentRouter ? `url(${images.tab.naver.active}) no-repeat 50% 50%/contain !important` : undefined,
       },
-      '&[data-icon="twitter"]': {
+      '&[data-icon="editorial"]': {
         background: currentRouter
-          ? `url(${images.tab.twitter.active}) no-repeat 50% 50%/contain !important`
-          : undefined,
-      },
-      '&[data-icon="history"]': {
-        background: currentRouter
-          ? `url(${images.tab.history.active}) no-repeat 50% 50%/contain !important`
-          : undefined,
-      },
-      '&[data-icon="preview"]': {
-        background: currentRouter
-          ? `url(${images.tab.preview.active}) no-repeat 50% 50%/contain !important`
+          ? `url(${images.tab.editorial.active}) no-repeat 50% 50%/contain !important`
           : undefined,
       },
     },
@@ -160,24 +134,10 @@ export default function Services() {
             <span>NAVER</span>
           </AnchorLink>
         </MenuItem>
-        <MenuItem currentRouter={router.pathname === '/periodt' ? true : false}>
-          <AnchorLink href="/periodt">
-            <i data-icon="twitter" />
-            <span>Twitter</span>
-          </AnchorLink>
-        </MenuItem>
-        <MenuItem currentRouter={router.pathname === '/history' ? true : false}>
-          <AnchorLink href="/history">
-            <i data-icon="history" />
-            <span>History</span>
-          </AnchorLink>
-        </MenuItem>
-        <MenuItem
-          currentRouter={router.pathname === '/insteads' || router.pathname.includes('/instead') ? true : false}
-        >
-          <AnchorLink href="/insteads">
-            <i data-icon="preview" />
-            <span>Preview</span>
+        <MenuItem currentRouter={router.pathname === '/editorials' ? true : false}>
+          <AnchorLink href="/editorials">
+            <i data-icon="editorial" />
+            <span>Editorial</span>
           </AnchorLink>
         </MenuItem>
       </ol>
