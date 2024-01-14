@@ -14,21 +14,7 @@ const formatDate = (datetime: string) => {
 
 async function fetchNaverNewsData() {
   const response = await fetch(
-    `${process.env.STRAPI_URL}/api/naver-news-productions?pagination[page]=1&pagination[pageSize]=10000`,
-    {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${process.env.STRAPI_BEARER_TOKEN}`,
-      },
-    },
-  );
-  const data = await response.json();
-  return data.data;
-}
-
-async function fetchNaverEntertainmentData() {
-  const response = await fetch(
-    `${process.env.STRAPI_URL}/api/naver-entertainment-productions?pagination[page]=1&pagination[pageSize]=10000`,
+    `${process.env.STRAPI_URL}/api/naver-memorials?pagination[page]=1&pagination[pageSize]=10000`,
     {
       method: 'GET',
       headers: {
@@ -43,21 +29,13 @@ async function fetchNaverEntertainmentData() {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const newsData = await fetchNaverNewsData();
-    const entertainmentData = await fetchNaverEntertainmentData();
 
     const newsDataProcessed = newsData.map((newsItem: any) => ({
       idx: `article-news/${formatDate(newsItem.attributes.createdAt)}${newsItem.id}`,
       created: newsItem.attributes.createdAt,
     }));
 
-    const entertainmentDataProcessed = entertainmentData.map((entertainmentData: any) => ({
-      idx: `article-entertainment/${formatDate(entertainmentData.attributes.createdAt)}${entertainmentData.id}`,
-      created: entertainmentData.attributes.createdAt,
-    }));
-
-    const combinedData = [...newsDataProcessed, ...entertainmentDataProcessed];
-
-    res.status(200).send(combinedData);
+    res.status(200).send(newsDataProcessed);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }

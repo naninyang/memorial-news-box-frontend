@@ -43,7 +43,7 @@
 ### Backend
 
 - AWS EC2
-- GCC Compute Engine
+- GCC (Compute Engine, Cloud DNS, Networking)
 - Nginx
 - PM2
 - MariaDB

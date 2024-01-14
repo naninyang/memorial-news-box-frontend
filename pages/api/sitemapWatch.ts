@@ -26,38 +26,16 @@ async function fetchYouTubeItemData() {
   return data.data;
 }
 
-async function fetchYouTubePlaylistData() {
-  const response = await fetch(
-    `${process.env.STRAPI_URL}/api/youtube-playlist-productions?pagination[page]=1&pagination[pageSize]=10000`,
-    {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${process.env.STRAPI_BEARER_TOKEN}`,
-      },
-    },
-  );
-  const data = await response.json();
-  return data.data;
-}
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const newsData = await fetchYouTubeItemData();
-    const playlistData = await fetchYouTubePlaylistData();
 
     const newsDataProcessed = newsData.map((newsItem: any) => ({
       idx: `watch-news/${formatDate(newsItem.attributes.createdAt)}${newsItem.id}`,
       created: newsItem.attributes.createdAt,
     }));
 
-    const playlistDataProcessed = playlistData.map((playlistItem: any) => ({
-      idx: `watch-playlist/${formatDate(playlistItem.attributes.createdAt)}${playlistItem.id}`,
-      created: playlistItem.attributes.createdAt,
-    }));
-
-    const combinedData = [...newsDataProcessed, ...playlistDataProcessed];
-
-    res.status(200).send(combinedData);
+    res.status(200).send(newsDataProcessed);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
