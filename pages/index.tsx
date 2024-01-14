@@ -12,7 +12,7 @@ import main from '@/styles/main.module.sass';
 interface Counts {
   youtube: number;
   naver: number;
-  twitter: number;
+  editorial: number;
 }
 
 type DataResponse = {
@@ -130,16 +130,16 @@ export default function Home() {
         {count && (
           <dl>
             <div>
-              <dt>가져온 YouTube 뉴스</dt>
+              <dt>가져온 유튜브 뉴스</dt>
               <dd>{formatNumber(count.youtube)} 건</dd>
             </div>
             <div>
-              <dt>가져온 NAVER 뉴스</dt>
+              <dt>가져온 네이버 뉴스</dt>
               <dd>{formatNumber(count.naver)} 건</dd>
             </div>
             <div>
-              <dt>가져온 Twitter 인용</dt>
-              <dd>{formatNumber(count.twitter)} 건</dd>
+              <dt>가져온 만평</dt>
+              <dd>{formatNumber(count.editorial)} 건</dd>
             </div>
           </dl>
         )}
