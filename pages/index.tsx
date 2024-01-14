@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { isSafari } from 'react-device-detect';
 import Seo from '@/components/Seo';
 import styled from '@emotion/styled';
@@ -65,16 +64,17 @@ export default function Home() {
   const title = 'Home';
 
   useEffect(() => {
-    async function fetchTitleData() {
+    async function fetchDescriptionData() {
       try {
-        const response = await axios.get(`/api/pages?title=${title}`);
-        setData(response.data);
+        const response = await fetch(`/api/pages?title=${title}`);
+        const titleResponse = await response.json();
+        setData(titleResponse);
       } catch (error) {
         console.error('Error fetching page info:', error);
       }
     }
 
-    fetchTitleData();
+    fetchDescriptionData();
   }, [title]);
 
   useEffect(() => {
@@ -82,18 +82,14 @@ export default function Home() {
   }, []);
 
   const [count, setCount] = useState<Counts | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
 
   async function fetchCountData() {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contentTotalCount`);
+      const response = await fetch(`/api/contentTotalCount`);
       const data = await response.json();
       setCount(data);
-      setLoading(false);
     } catch (err: any) {
-      setError(err.message);
-      setLoading(false);
+      console.error(err.message);
     }
   }
 

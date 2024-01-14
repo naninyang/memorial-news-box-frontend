@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import styled from '@emotion/styled';
 import Seo from '@/components/Seo';
 import AnchorLink from '@/components/Anchor';
@@ -26,15 +25,16 @@ export default function Notice() {
   const title = 'Notice';
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchDescriptionData() {
       try {
-        const response = await axios.get(`/api/pages?title=${title}`);
-        setData(response.data);
+        const response = await fetch(`/api/pages?title=${title}`);
+        const descriptionResponse = await response.json();
+        setData(descriptionResponse);
       } catch (error) {
         console.error('Error fetching page info:', error);
       }
     }
-    fetchData();
+    fetchDescriptionData();
   }, [title]);
 
   const [currentPage, setCurrentPage] = useState<string | null>(null);

@@ -36,7 +36,7 @@ function ContactForm() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/contact`, formData);
+      const response = await axios.post(`/api/contact`, formData);
 
       if (response.status === 200) {
         alert('성공적으로 제출되었습니다!');
@@ -54,15 +54,16 @@ function ContactForm() {
   const title = 'ContactUs';
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchDescriptionData() {
       try {
-        const response = await axios.get(`/api/pages?title=${title}`);
-        setData(response.data);
+        const response = await fetch(`/api/pages?title=${title}`);
+        const descriptionResponse = await response.json();
+        setData(descriptionResponse);
       } catch (error) {
         console.error('Error fetching page info:', error);
       }
     }
-    fetchData();
+    fetchDescriptionData();
   }, [title]);
 
   const [currentPage, setCurrentPage] = useState<string | null>(null);
