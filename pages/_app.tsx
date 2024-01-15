@@ -1,22 +1,12 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { AppProps } from 'next/app';
-import { Aleo, Hahmlet, Lato } from 'next/font/google';
+import { Lato } from 'next/font/google';
 import Script from 'next/script';
 import Header from '@/components/Header';
 import Services from '@/components/Services';
 import { GA_TRACKING_ID, pageview } from '@/lib/gtag';
 import 'styles/globals.sass';
-
-const fontAleo = Aleo({
-  weight: ['100', '300', '400', '700', '900'],
-  subsets: ['latin'],
-});
-
-const fontHahmlet = Hahmlet({
-  weight: ['100', '300', '400', '700', '900'],
-  subsets: ['vietnamese'],
-});
 
 const fontLato = Lato({
   weight: ['100', '300', '400', '700', '900'],
@@ -92,25 +82,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </Script>
       <style jsx global>
         {`
-          body,
-          pre,
-          input,
-          button,
-          textarea,
-          select,
-          legend {
-            font-family:
-              ${fontAleo.style.fontFamily},
-              ${fontHahmlet.style.fontFamily},
-              -apple-system,
-              BlinkMacSystemFont,
-              system-ui,
-              'Apple SD Gothic Neo',
-              'Nanum Gothic',
-              'Malgun Gothic',
-              sans-serif;
-          }
-          nav a {
+          nav > ol a {
             font-family: ${fontLato.style.fontFamily};
           }
         `}
