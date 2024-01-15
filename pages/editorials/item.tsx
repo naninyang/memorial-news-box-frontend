@@ -125,7 +125,7 @@ function EditorialsItem() {
     const getNewspaperURL = (org: string) => {
       const urls: { [key: string]: string } = {
         hani: 'https://www.hani.co.kr/arti/cartoon/hanicartoon/',
-        khan: 'https://www.khan.co.kr/cartoon/grim-madang/article/',
+        khan: 'https://www.khan.co.kr/cartoon/jangdori/article/',
         ohmynews: 'https://www.ohmynews.com/NWS_Web/View/at_pg.aspx?CNTN_CD=',
         vegannews: 'https://www.vegannews.co.kr/news/article.html?no=',
         vop: 'https://vop.co.kr/',
