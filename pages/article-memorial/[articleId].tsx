@@ -100,7 +100,10 @@ export default function ArticleDetail({ articleData }: { articleData: NaverItemD
         {articleData ? (
           <>
             <div className={styles.description}>
-              <p dangerouslySetInnerHTML={{ __html: articleData.attributes.description.replace(/\n/g, '<br />') }} />
+              <p
+                className="comment"
+                dangerouslySetInnerHTML={{ __html: articleData.attributes.description.replace(/\n/g, '<br />') }}
+              />
               <Image
                 src={`https://cat-svn.netlify.app/memorial/${articleData?.attributes.thumbnail}${
                   articleData?.attributes.thumbnail?.endsWith('.gif') ? '' : '.webp'

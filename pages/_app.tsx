@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { AppProps } from 'next/app';
-import { Lato } from 'next/font/google';
+import { Lato, Noto_Sans_KR } from 'next/font/google';
 import Script from 'next/script';
 import Header from '@/components/Header';
 import Services from '@/components/Services';
@@ -11,6 +11,11 @@ import 'styles/globals.sass';
 const fontLato = Lato({
   weight: ['100', '300', '400', '700', '900'],
   subsets: ['latin'],
+});
+
+const fontNoto = Noto_Sans_KR({
+  weight: ['100', '300', '400', '700', '900'],
+  subsets: ['cyrillic'],
 });
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -82,6 +87,10 @@ export default function App({ Component, pageProps }: AppProps) {
       </Script>
       <style jsx global>
         {`
+          .comment {
+            font-family: ${fontNoto.style.fontFamily};
+          }
+          time,
           nav > ol a {
             font-family: ${fontLato.style.fontFamily};
           }

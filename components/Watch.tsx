@@ -118,7 +118,10 @@ const watchDetail: React.FC<watchProps> = ({ watchNews }) => {
                 <YouTubeController videoId={watchNews.video_id} isPlaylist={false} />
                 <div className={styles.description}>
                   <p dangerouslySetInnerHTML={{ __html: watchNews.description.replace(/\n/g, '<br />') }} />
-                  <p dangerouslySetInnerHTML={{ __html: watchNews.comment.replace(/\n/g, '<br />') }} />
+                  <p
+                    className="comment"
+                    dangerouslySetInnerHTML={{ __html: watchNews.comment.replace(/\n/g, '<br />') }}
+                  />
                 </div>
                 <div className={commentStyles['comment-control']}>
                   <form onSubmit={handleSubmit}>
