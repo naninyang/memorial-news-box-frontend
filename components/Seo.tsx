@@ -10,12 +10,14 @@ interface Props {
   pageOgType?: string;
 }
 
+export const originTitle = '기억뉴스상자 memorial.newsbox';
+
 const Seo = ({ pageTitle, pageDescription, pageImg, pageImgWidth, pageImgHeight, pageOgType }: Props) => {
   const router = useRouter();
   const pagePath = router.asPath;
   const domain = 'https://memorial.dev1stud.io';
 
-  const defaultTitle = '내가 기억해야 할 뉴스 - 기억뉴스상자 memorial.newsbox';
+  const defaultTitle = `내가 기억해야 할 뉴스 - ${originTitle}`;
   const defaultDescription = '내가 기억해야 할 뉴스';
   const title = pageTitle || defaultTitle;
   const description = pageDescription || defaultDescription;

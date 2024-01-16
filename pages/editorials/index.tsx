@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Seo from '@/components/Seo';
+import Seo, { originTitle } from '@/components/Seo';
 import PageName from '@/components/PageName';
 import EditorialItem from './item';
 import styles from '@/styles/editorials.module.sass';
@@ -15,7 +15,7 @@ function Articles() {
   return (
     <main className={styles.editorials}>
       <Seo
-        pageTitle="만평보기"
+        pageTitle={`만평보기 - ${originTitle}`}
         pageDescription="내가 봐야 할 만평"
         pageImg={`https://memorial.dev1stud.io/og-image.png?ts=${timestamp}`}
       />
