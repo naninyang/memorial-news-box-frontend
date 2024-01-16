@@ -6,7 +6,9 @@ self.addEventListener('fetch', (event) => {
     event.request.url.includes('/api/pages') ||
     event.request.url.includes('/api/editorial') ||
     event.request.url.includes('/api/watchNews') ||
-    event.request.url.includes('/api/youtubeNews')
+    event.request.url.includes('/api/youtubeNews') ||
+    event.request.url.includes('/fonts/KingSejongInstitute-Regular.woff2') ||
+    event.request.url.includes('/fonts/KingSejongInstitute-Bold.woff2')
   ) {
     event.respondWith(
       caches.open(CACHE_NAME).then((cache) => {
