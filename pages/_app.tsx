@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { AppProps } from 'next/app';
 import { Lato, Noto_Sans_KR } from 'next/font/google';
+import localFont from 'next/font/local';
 import Script from 'next/script';
 import Header from '@/components/Header';
 import Services from '@/components/Services';
@@ -16,6 +17,21 @@ const fontLato = Lato({
 const fontNoto = Noto_Sans_KR({
   weight: ['100', '300', '400', '700', '900'],
   subsets: ['cyrillic'],
+});
+
+const KingSejongInstitute = localFont({
+  src: [
+    {
+      path: '../fonts//KingSejongInstitute-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/KingSejongInstitute-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
 });
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -87,6 +103,14 @@ export default function App({ Component, pageProps }: AppProps) {
       </Script>
       <style jsx global>
         {`
+          body,
+          pre,
+          input,
+          button,
+          textarea,
+          select {
+            font-family: ${KingSejongInstitute.style.fontFamily}, monospace;
+          }
           .comment {
             font-family: ${fontNoto.style.fontFamily};
           }
