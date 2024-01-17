@@ -23,7 +23,6 @@ function SiteMap() {}
 export async function getServerSideProps({ res }) {
   const articleRequest = await fetch(ArticleAPI);
   const articles = await articleRequest.json();
-
   const sitemap = generateSiteMap(articles);
 
   res.setHeader('Content-Type', 'text/xml');

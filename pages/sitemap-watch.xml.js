@@ -23,7 +23,6 @@ function SiteMap() {}
 export async function getServerSideProps({ res }) {
   const watchRequest = await fetch(WatchAPI);
   const watchs = await watchRequest.json();
-
   const sitemap = generateSiteMap(watchs);
 
   res.setHeader('Content-Type', 'text/xml');

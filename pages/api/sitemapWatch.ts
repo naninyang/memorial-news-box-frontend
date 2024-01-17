@@ -14,7 +14,7 @@ const formatDate = (datetime: string) => {
 
 async function fetchYouTubeItemData() {
   const response = await fetch(
-    `${process.env.STRAPI_URL}/api/youtube-news-productions?pagination[page]=1&pagination[pageSize]=10000`,
+    `${process.env.STRAPI_URL}/api/youtube-memorials?pagination[page]=1&pagination[pageSize]=10000`,
     {
       method: 'GET',
       headers: {
