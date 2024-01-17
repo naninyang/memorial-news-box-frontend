@@ -185,7 +185,7 @@ function ArticlesItem() {
                           <div className={styles['og-info']}>
                             <div className={styles.created}>
                               <cite>{article.newsMetaData?.ogCreator}</cite>
-                              <time dateTime={article.created}>{article.created}</time>
+                              <time>{article.created}</time>
                             </div>
                             <div className={styles.summary}>
                               <strong>{article.newsMetaData?.ogTitle}</strong>
@@ -204,7 +204,7 @@ function ArticlesItem() {
                           <div className={styles['og-info']}>
                             <div className={styles.created}>
                               <cite>{article.newsMetaData?.ogCreator}</cite>
-                              <time dateTime={article.created}>{article.created}</time>
+                              <time>{article.created}</time>
                             </div>
                             <div className={styles.summary}>
                               <strong>{article.newsMetaData?.ogTitle}</strong>

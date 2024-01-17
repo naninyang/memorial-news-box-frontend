@@ -126,7 +126,7 @@ export default function ArticleDetail({ articleData }: { articleData: NaverItemD
                       <div className={styles['og-info']}>
                         <div className={styles.created}>
                           <cite>{articleData.metaData?.ogCreator}</cite>
-                          <time dateTime={articleData.attributes.created}>{articleData.attributes.created}</time>
+                          <time>{articleData.attributes.created}</time>
                         </div>
                         <div className={styles.summary}>
                           <strong>{articleData.metaData?.ogTitle}</strong>
@@ -147,7 +147,7 @@ export default function ArticleDetail({ articleData }: { articleData: NaverItemD
                       <div className={styles['og-info']}>
                         <div className={styles.created}>
                           <cite>{articleData.metaData?.ogCreator}</cite>
-                          <time dateTime={articleData.attributes.created}>{articleData.attributes.created}</time>
+                          <time>{articleData.attributes.created}</time>
                         </div>
                         <div className={styles.summary}>
                           <strong>{articleData.metaData?.ogTitle}</strong>
