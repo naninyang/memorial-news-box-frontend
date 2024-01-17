@@ -140,7 +140,7 @@ function EditorialsItem() {
           <div className={styles['og-info']}>
             <div className={styles.created}>
               <cite>{getNewspaperName(editorialOrg)}</cite>
-              <time dateTime={editorialCreated}>{editorialCreated}</time>
+              <time>{editorialCreated}</time>
             </div>
             <div className={styles.summary}>
               <strong>{editorialTitle}</strong>
