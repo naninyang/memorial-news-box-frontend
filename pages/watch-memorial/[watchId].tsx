@@ -72,7 +72,7 @@ export default function watchDetail({ watchData }: { watchData: YouTubeNewsRowDa
   }
 
   const [formData, setFormData] = useState({
-    collection: `youtube-${watchData.attributes.type}-${process.env.NODE_ENV}`,
+    collection: `youtube-memorials`,
     permalink: `${process.env.NEXT_PUBLIC_API_URL}/watch-news/${watchData.attributes.idx}`,
     idx: watchData.attributes.idx,
     created: new Date().toISOString(),
@@ -101,9 +101,7 @@ export default function watchDetail({ watchData }: { watchData: YouTubeNewsRowDa
   const [commentData, setCommentData] = useState<CommentResponse[]>([]);
   const fetchCommentData = async () => {
     try {
-      const response = await fetch(
-        `/api/comments?collection=youtube-${watchData?.attributes.type}-${process.env.NODE_ENV}&idx=${watchData?.attributes.idx}`,
-      );
+      const response = await fetch(`/api/comments?collection=youtube-memorials&idx=${watchData?.attributes.idx}`);
       const data = await response.json();
       setCommentData(Array.isArray(data.data) ? data.data : [data.data]);
     } catch (error) {
@@ -118,7 +116,8 @@ export default function watchDetail({ watchData }: { watchData: YouTubeNewsRowDa
   return (
     <main className={styles.watch}>
       <Seo
-        pageTitle={`${watchData.attributes.title} - ${originTitle}`}
+        pageTitles={`${watchData.attributes.title} - ${originTitle}`}
+        pageTitle={`${watchData.attributes.title}`}
         pageDescription={watchData.attributes.comment}
         pageImg={`https://i.ytimg.com/vi/${watchData.attributes.videoId}/maxresdefault.jpg`}
         pageOgType="video.other"

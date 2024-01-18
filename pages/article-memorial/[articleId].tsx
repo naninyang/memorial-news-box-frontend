@@ -34,7 +34,7 @@ export default function ArticleDetail({ articleData }: { articleData: NaverItemD
   };
 
   const [formData, setFormData] = useState({
-    collection: `naver-memorial`,
+    collection: `naver-memorials`,
     permalink: `${process.env.NEXT_PUBLIC_API_URL}/article-memorial/${articleData?.attributes.idx}`,
     idx: articleData?.attributes.idx,
     created: new Date().toISOString(),
@@ -87,7 +87,8 @@ export default function ArticleDetail({ articleData }: { articleData: NaverItemD
       </div>
       <article>
         <Seo
-          pageTitle={`${articleData?.attributes.title} - ${originTitle}`}
+          pageTitles={`${articleData?.attributes.title} - ${originTitle}`}
+          pageTitle={`${articleData?.attributes.title}`}
           pageDescription={`${articleData?.attributes.description}`}
           pageImg={`https://cdn.dev1stud.io/images/${articleData?.attributes.thumbnail}${
             articleData?.attributes.thumbnail?.endsWith('.gif') ? '' : '.webp'

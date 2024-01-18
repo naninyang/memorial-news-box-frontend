@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
-import Seo from '@/components/Seo';
+import Seo, { originTitle } from '@/components/Seo';
 import AnchorLink from '@/components/Anchor';
 import { images } from '@/components/images';
 import content from '@/styles/content.module.sass';
@@ -49,6 +49,7 @@ export default function Notice() {
   return (
     <main className={`${content.content} ${styles.pages} ${styles.notice}`}>
       <Seo
+        pageTitles={`안내사항 - ${originTitle}`}
         pageTitle="안내사항"
         pageDescription="내가 기억해야 할 뉴스"
         pageImg={`https://memorial.dev1stud.io/og-image.png?ts=${timestamp}`}

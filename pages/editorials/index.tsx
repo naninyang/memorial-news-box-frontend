@@ -15,7 +15,8 @@ function Articles() {
   return (
     <main className={styles.editorials}>
       <Seo
-        pageTitle={`만평보기 - ${originTitle}`}
+        pageTitles={`만평보기 - ${originTitle}`}
+        pageTitle="만평보기"
         pageDescription="내가 봐야 할 만평"
         pageImg={`https://memorial.dev1stud.io/og-image.png?ts=${timestamp}`}
       />

@@ -15,7 +15,8 @@ export default function Watches() {
   return (
     <main className={styles.watches}>
       <Seo
-        pageTitle={`유튜브 뉴스 - ${originTitle}`}
+        pageTitles={`유튜브 뉴스 - ${originTitle}`}
+        pageTitle="유튜브 뉴스"
         pageDescription="내가 기억해야 할 뉴스"
         pageImg={`https://memorial.dev1stud.io/og-image.png?ts=${timestamp}`}
       />
