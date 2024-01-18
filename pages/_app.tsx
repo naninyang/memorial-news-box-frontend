@@ -1,18 +1,13 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { AppProps } from 'next/app';
-import { Lato, Noto_Sans_KR } from 'next/font/google';
+import { Noto_Sans_KR } from 'next/font/google';
 import localFont from 'next/font/local';
 import Script from 'next/script';
 import Header from '@/components/Header';
 import Services from '@/components/Services';
 import { GA_TRACKING_ID, pageview } from '@/lib/gtag';
 import 'styles/globals.sass';
-
-const fontLato = Lato({
-  weight: ['100', '300', '400', '700', '900'],
-  subsets: ['latin'],
-});
 
 const fontNoto = Noto_Sans_KR({
   weight: ['100', '300', '400', '700', '900'],
@@ -111,12 +106,10 @@ export default function App({ Component, pageProps }: AppProps) {
           select {
             font-family: ${KingSejongInstitute.style.fontFamily}, monospace;
           }
-          .comment {
-            font-family: ${fontNoto.style.fontFamily};
-          }
+          .comment,
           time,
           nav > ol a {
-            font-family: ${fontLato.style.fontFamily};
+            font-family: ${fontNoto.style.fontFamily};
           }
         `}
       </style>

@@ -117,13 +117,13 @@ export default function Services() {
         <MenuItem currentRouter={router.pathname === '/' ? true : false}>
           <AnchorLink href="/">
             <i data-icon="home" />
-            <span>Home</span>
+            <span>홈</span>
           </AnchorLink>
         </MenuItem>
         <MenuItem currentRouter={router.pathname === '/watches' || router.pathname.includes('/watch') ? true : false}>
           <AnchorLink href="/watches">
             <i data-icon="youtube" />
-            <span>YouTube</span>
+            <span>유튜브</span>
           </AnchorLink>
         </MenuItem>
         <MenuItem
@@ -131,13 +131,13 @@ export default function Services() {
         >
           <AnchorLink href="/articles">
             <i data-icon="naver" />
-            <span>NAVER</span>
+            <span>네이버</span>
           </AnchorLink>
         </MenuItem>
         <MenuItem currentRouter={router.pathname === '/editorials' ? true : false}>
           <AnchorLink href="/editorials">
             <i data-icon="editorial" />
-            <span>Editorial</span>
+            <span>만평보기</span>
           </AnchorLink>
         </MenuItem>
       </ol>
