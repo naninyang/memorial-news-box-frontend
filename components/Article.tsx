@@ -117,7 +117,7 @@ const articleDetail: React.FC<articleProps> = ({ articleItem }) => {
               <div className={styles.description}>
                 <p className="comment" dangerouslySetInnerHTML={{ __html: articleItem.description }} />
                 <Image
-                  src={`https://cat-svn.netlify.app/memorial/${articleItem?.thumbnail}${
+                  src={`https://cdn.dev1stud.io/memorial/${articleItem?.thumbnail}${
                     articleItem?.thumbnail?.endsWith('.gif') ? '' : '.webp'
                   }`}
                   width={640}

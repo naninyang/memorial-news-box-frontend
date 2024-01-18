@@ -136,7 +136,7 @@ function EditorialsItem() {
     return (
       <AnchorLink href={`${getNewspaperURL(editorialOrg)}${editorialNumber}`}>
         <div className={styles['og-container']}>
-          <img src={`https://cat-svn.netlify.app/memorial/${editorialThumbnail}.webp`} alt="" />
+          <img src={`https://cdn.dev1stud.io/memorial/${editorialThumbnail}.webp`} alt="" />
           <div className={styles['og-info']}>
             <div className={styles.created}>
               <cite>{getNewspaperName(editorialOrg)}</cite>

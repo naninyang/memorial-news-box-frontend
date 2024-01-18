@@ -167,7 +167,7 @@ function ArticlesItem() {
                       </Link>
                     )}
                     <Image
-                      src={`https://cat-svn.netlify.app/memorial/${article?.thumbnail}${
+                      src={`https://cdn.dev1stud.io/memorial/${article?.thumbnail}${
                         article?.thumbnail?.endsWith('.gif') ? '' : '.webp'
                       }`}
                       width={640}
