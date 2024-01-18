@@ -119,7 +119,7 @@ const watchDetail: React.FC<watchProps> = ({ watchNews }) => {
                 <div className={styles.description}>
                   <p dangerouslySetInnerHTML={{ __html: watchNews.description.replace(/\n/g, '<br />') }} />
                   <p
-                    className="Comment"
+                    className="opinion"
                     dangerouslySetInnerHTML={{ __html: watchNews.comment.replace(/\n/g, '<br />') }}
                   />
                 </div>

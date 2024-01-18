@@ -115,7 +115,7 @@ const articleDetail: React.FC<articleProps> = ({ articleItem }) => {
             </header>
             <PerfectScrollbar className={styles['scrollbar-container']}>
               <div className={styles.description}>
-                <p className="Comment" dangerouslySetInnerHTML={{ __html: articleItem.description }} />
+                <p className="opinion" dangerouslySetInnerHTML={{ __html: articleItem.description }} />
                 <Image
                   src={`https://cdn.dev1stud.io/memorial/${articleItem?.thumbnail}${
                     articleItem?.thumbnail?.endsWith('.gif') ? '' : '.webp'

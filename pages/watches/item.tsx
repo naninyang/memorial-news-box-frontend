@@ -127,7 +127,7 @@ export default function WatchesItem() {
             )}
             <p dangerouslySetInnerHTML={{ __html: data.description.replace(/\n/g, '<br />') }} />
           </div>
-          <p className="Comment" dangerouslySetInnerHTML={{ __html: data.comment.replace(/\n/g, '<br />') }} />
+          <p className="opinion" dangerouslySetInnerHTML={{ __html: data.comment.replace(/\n/g, '<br />') }} />
         </figcaption>
       </figure>
     </div>
