@@ -102,7 +102,7 @@ export default function ArticleDetail({ articleData }: { articleData: NaverItemD
           <>
             <div className={styles.description}>
               <p
-                className="comment"
+                className="Comment"
                 dangerouslySetInnerHTML={{ __html: articleData.attributes.description.replace(/\n/g, '<br />') }}
               />
               <Image

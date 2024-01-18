@@ -144,7 +144,7 @@ export default function watchDetail({ watchData }: { watchData: YouTubeNewsRowDa
         <div className={styles.description}>
           <p dangerouslySetInnerHTML={{ __html: watchData.attributes.description.replace(/\n/g, '<br />') }} />
           <p
-            className="comment"
+            className="Comment"
             dangerouslySetInnerHTML={{ __html: watchData.attributes.comment.replace(/\n/g, '<br />') }}
           />
         </div>

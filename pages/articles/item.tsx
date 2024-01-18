@@ -154,14 +154,14 @@ function ArticlesItem() {
                         shallow={true}
                       >
                         <p
-                          className={`${styles.comment} comment`}
+                          className={`${styles.comment} Comment`}
                           dangerouslySetInnerHTML={{ __html: article.description.replace(/\n/g, '<br />') }}
                         />
                       </Link>
                     ) : (
                       <Link key={article.idx} href={`/article-memorial/${article.idx}`} scroll={false} shallow={true}>
                         <p
-                          className={`${styles.comment} comment`}
+                          className={`${styles.comment} Comment`}
                           dangerouslySetInnerHTML={{ __html: article.description.replace(/\n/g, '<br />') }}
                         />
                       </Link>

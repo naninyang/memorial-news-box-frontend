@@ -106,7 +106,7 @@ export default function App({ Component, pageProps }: AppProps) {
           select {
             font-family: ${KingSejongInstitute.style.fontFamily}, monospace;
           }
-          .comment,
+          .Comment,
           time,
           nav > ol a {
             font-family: ${fontNoto.style.fontFamily};
