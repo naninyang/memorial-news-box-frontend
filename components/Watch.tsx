@@ -59,10 +59,6 @@ const watchDetail: React.FC<watchProps> = ({ watchNews }) => {
     router.push('/watches');
   };
 
-  const countItems = (data: string): number => {
-    return data.split(',').length - 1;
-  };
-
   const [formData, setFormData] = useState({
     collection: `youtube-memorial`,
     permalink: `${process.env.NEXT_PUBLIC_API_URL}/watch-memorial/${watchNews?.idx}`,
