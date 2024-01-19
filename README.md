@@ -35,7 +35,6 @@
 
 - Next.js
 - TypeScript
-- Fetch with Node 18
 - iconv
 - cheerio
 - vercel deployment
