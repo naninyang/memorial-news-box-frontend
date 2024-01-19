@@ -60,10 +60,8 @@ const articleDetail: React.FC<articleProps> = ({ articleItem }) => {
   };
 
   const [formData, setFormData] = useState({
-    collection: articleItem?.newsMetaData
-      ? `naver-news-${process.env.NODE_ENV}`
-      : `naver-entertainment-${process.env.NODE_ENV}`,
-    permalink: `${process.env.NEXT_PUBLIC_API_URL}/article/${articleItem?.idx}`,
+    collection: `naver-memorial`,
+    permalink: `${process.env.NEXT_PUBLIC_API_URL}/article-memorial/${articleItem?.idx}`,
     idx: articleItem?.idx,
     created: new Date().toISOString(),
     username: '',
@@ -76,29 +74,26 @@ const articleDetail: React.FC<articleProps> = ({ articleItem }) => {
     try {
       const response = await axios.post(`/api/comments`, formData);
       if (response.status === 200) {
-        await fetchNaverData();
+        await fetchNaverCommentData();
       }
     } catch (error) {
-      await fetchNaverData();
+      await fetchNaverCommentData();
     }
   };
 
   const [naverCommentData, setNaverCommentData] = useState<DataResponse[]>([]);
-  const fetchNaverData = async () => {
+  const fetchNaverCommentData = async () => {
     try {
-      const response = articleItem?.newsMetaData
-        ? await axios.get(`/api/comments?collection=naver-news-${process.env.NODE_ENV}&idx=${articleItem?.idx}`)
-        : await axios.get(
-            `/api/comments?collection=naver-entertainment-${process.env.NODE_ENV}&idx=${articleItem?.idx}`,
-          );
-      setNaverCommentData(Array.isArray(response.data) ? response.data : [response.data]);
+      const response = await fetch(`/api/comments?collection=naver-memorial&idx=${articleItem?.idx}`);
+      const commentResponse = await response.json();
+      setNaverCommentData(Array.isArray(commentResponse) ? commentResponse : [commentResponse]);
     } catch (error) {
       console.error('Error fetching page info:', error);
     }
   };
 
   useEffect(() => {
-    fetchNaverData();
+    fetchNaverCommentData();
   }, []);
 
   return (

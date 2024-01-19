@@ -22,7 +22,7 @@ const BackButton = styled.i({
   },
 });
 
-export default function ArticleDetail({ articleData }: { articleData: NaverItemData | null }) {
+export default function ArticleDetail({ articleData, idx }: { articleData: NaverItemData | null; idx: string }) {
   const router = useRouter();
   let savedScrollPosition;
 
@@ -34,9 +34,9 @@ export default function ArticleDetail({ articleData }: { articleData: NaverItemD
   };
 
   const [formData, setFormData] = useState({
-    collection: `naver-memorials`,
-    permalink: `${process.env.NEXT_PUBLIC_API_URL}/article-memorial/${articleData?.attributes.idx}`,
-    idx: articleData?.attributes.idx,
+    collection: `naver-memorial`,
+    permalink: `${process.env.NEXT_PUBLIC_API_URL}/article-memorial/${idx}`,
+    idx: idx,
     created: new Date().toISOString(),
     username: '',
     comment: '',
@@ -48,26 +48,26 @@ export default function ArticleDetail({ articleData }: { articleData: NaverItemD
     try {
       const response = await axios.post(`/api/comments`, formData);
       if (response.status === 200) {
-        await fetchNaverData();
+        await fetchNaverCommentData();
       }
     } catch (error) {
-      await fetchNaverData();
+      await fetchNaverCommentData();
     }
   };
 
   const [commentData, setCommentData] = useState<CommentResponse[]>([]);
-  const fetchNaverData = async () => {
+  const fetchNaverCommentData = async () => {
     try {
-      const response = await fetch(`/api/comments?collection=naver-memorial&idx=${articleData?.attributes.idx}`);
-      const data = await response.json();
-      setCommentData(data.data);
+      const response = await fetch(`/api/comments?collection=naver-memorial&idx=${idx}`);
+      const commentResponse = await response.json();
+      setCommentData(Array.isArray(commentResponse) ? commentResponse : [commentResponse]);
     } catch (error) {
       console.error('Error fetching page info:', error);
     }
   };
 
   useEffect(() => {
-    fetchNaverData();
+    fetchNaverCommentData();
   }, []);
 
   return (
@@ -208,8 +208,8 @@ export default function ArticleDetail({ articleData }: { articleData: NaverItemD
         </form>
         {commentData && (
           <div className={commentStyles.comments}>
-            <strong>댓글 {commentData.length - 1}개</strong>
-            {commentData.length > 1 &&
+            <strong>댓글 {commentData.length}개</strong>
+            {commentData.length > 0 &&
               commentData.map((comment, index) => (
                 <div key={index} className={commentStyles.comment}>
                   <div className={commentStyles.user}>
@@ -251,6 +251,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       articleData,
+      idx: articleId,
     },
     revalidate: 1,
   };

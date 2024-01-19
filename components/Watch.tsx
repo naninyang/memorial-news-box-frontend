@@ -64,7 +64,7 @@ const watchDetail: React.FC<watchProps> = ({ watchNews }) => {
   };
 
   const [formData, setFormData] = useState({
-    collection: `youtube-meorials`,
+    collection: `youtube-memorial`,
     permalink: `${process.env.NEXT_PUBLIC_API_URL}/watch-memorial/${watchNews?.idx}`,
     idx: watchNews?.idx,
     created: new Date().toISOString(),
@@ -89,8 +89,8 @@ const watchDetail: React.FC<watchProps> = ({ watchNews }) => {
   const fetchYoutubeData = async () => {
     try {
       const response = await fetch(`/api/comments?collection=youtube-memorial`);
-      const responseData = await response.json();
-      setYoutubeCommentData(responseData.data);
+      const commentResponse = await response.json();
+      setYoutubeCommentData(Array.isArray(commentResponse) ? commentResponse : [commentResponse]);
     } catch (error) {
       console.error('Error fetching page info:', error);
     }
