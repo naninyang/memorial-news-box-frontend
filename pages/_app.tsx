@@ -17,7 +17,7 @@ const fontNoto = Noto_Sans_KR({
 const KingSejongInstitute = localFont({
   src: [
     {
-      path: '../fonts//KingSejongInstitute-Regular.woff2',
+      path: '../fonts/KingSejongInstitute-Regular.woff2',
       weight: '400',
       style: 'normal',
     },
