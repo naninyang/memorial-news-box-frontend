@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import AnchorLink from './Anchor';
+import Anchor from './Anchor';
 import { hex, rem, mixIn } from '@/styles/designSystem';
 import { useRouter } from 'next/router';
 import { images } from './images';
@@ -115,30 +115,30 @@ export default function Services() {
     <Nav>
       <ol>
         <MenuItem currentRouter={router.pathname === '/' ? true : false}>
-          <AnchorLink href="/">
+          <Anchor href="/">
             <i data-icon="home" />
             <span>홈</span>
-          </AnchorLink>
+          </Anchor>
         </MenuItem>
         <MenuItem currentRouter={router.pathname === '/watches' || router.pathname.includes('/watch') ? true : false}>
-          <AnchorLink href="/watches">
+          <Anchor href="/watches">
             <i data-icon="youtube" />
             <span>유튜브</span>
-          </AnchorLink>
+          </Anchor>
         </MenuItem>
         <MenuItem
           currentRouter={router.pathname === '/articles' || router.pathname.includes('/article') ? true : false}
         >
-          <AnchorLink href="/articles">
+          <Anchor href="/articles">
             <i data-icon="naver" />
             <span>네이버</span>
-          </AnchorLink>
+          </Anchor>
         </MenuItem>
         <MenuItem currentRouter={router.pathname === '/editorials' ? true : false}>
-          <AnchorLink href="/editorials">
+          <Anchor href="/editorials">
             <i data-icon="editorial" />
             <span>만평보기</span>
-          </AnchorLink>
+          </Anchor>
         </MenuItem>
       </ol>
     </Nav>

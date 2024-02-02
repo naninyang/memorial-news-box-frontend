@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { CommentResponse, NaverItemData } from 'types';
 import { FormatDate } from '@/components/FormatDate';
 import { images } from '@/components/images';
-import AnchorLink from '@/components/Anchor';
+import Anchor from '@/components/Anchor';
 import Seo, { originTitle } from '@/components/Seo';
 import styled from '@emotion/styled';
 import styles from '@/styles/article.module.sass';
@@ -79,10 +79,10 @@ export default function ArticleDetail({ articleData, idx }: { articleData: Naver
             <span>뒤로가기</span>
           </button>
         ) : (
-          <AnchorLink href="/articles">
+          <Anchor href="/articles">
             <BackButton />
             <span>뒤로가기</span>
-          </AnchorLink>
+          </Anchor>
         )}
       </div>
       <article>
@@ -119,7 +119,7 @@ export default function ArticleDetail({ articleData, idx }: { articleData: Naver
             {articleData.metaData && (
               <>
                 {articleData.attributes.entertainment ? (
-                  <AnchorLink
+                  <Anchor
                     href={`https://n.news.naver.com/entertain/article/${articleData.attributes.oid}/${articleData.attributes.aid}`}
                   >
                     <div className={styles['og-container']}>
@@ -138,9 +138,9 @@ export default function ArticleDetail({ articleData, idx }: { articleData: Naver
                         </div>
                       </div>
                     </div>
-                  </AnchorLink>
+                  </Anchor>
                 ) : (
-                  <AnchorLink
+                  <Anchor
                     href={`https://n.news.naver.com/article/${articleData.attributes.oid}/${articleData.attributes.aid}`}
                   >
                     <div className={styles['og-container']}>
@@ -159,7 +159,7 @@ export default function ArticleDetail({ articleData, idx }: { articleData: Naver
                         </div>
                       </div>
                     </div>
-                  </AnchorLink>
+                  </Anchor>
                 )}
               </>
             )}

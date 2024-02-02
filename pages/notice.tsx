@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import Seo, { originTitle } from '@/components/Seo';
-import AnchorLink from '@/components/Anchor';
+import Anchor from '@/components/Anchor';
 import { images } from '@/components/images';
 import content from '@/styles/content.module.sass';
 import styles from '@/styles/pages.module.sass';
@@ -56,15 +56,15 @@ export default function Notice() {
       />
       <div className="top-link">
         {currentPage ? (
-          <AnchorLink href={`/${currentPage}`}>
+          <Anchor href={`/${currentPage}`}>
             <BackButton />
             <span>뒤로가기</span>
-          </AnchorLink>
+          </Anchor>
         ) : (
-          <AnchorLink href="/">
+          <Anchor href="/">
             <BackButton />
             <span>뒤로가기</span>
-          </AnchorLink>
+          </Anchor>
         )}
       </div>
       {data && (

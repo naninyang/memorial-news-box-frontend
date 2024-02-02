@@ -10,7 +10,7 @@ import PullToRefresh from 'react-simple-pull-to-refresh';
 import { EditorialItemsData, EditorialProps } from 'types';
 import { modalContainer } from '@/components/ModalStyling';
 // import EditorialDetail from '@/components/Editorial';
-import AnchorLink from '@/components/Anchor';
+import Anchor from '@/components/Anchor';
 import styles from '@/styles/editorials.module.sass';
 
 Modal.setAppElement('#__next');
@@ -134,7 +134,7 @@ function EditorialsItem() {
     };
 
     return (
-      <AnchorLink href={`${getNewspaperURL(editorialOrg)}${editorialNumber}`}>
+      <Anchor href={`${getNewspaperURL(editorialOrg)}${editorialNumber}`}>
         <div className={styles['og-container']}>
           <img src={`https://cdn.dev1stud.io/memorial/${editorialThumbnail}.webp`} alt="" />
           <div className={styles['og-info']}>
@@ -147,7 +147,7 @@ function EditorialsItem() {
             </div>
           </div>
         </div>
-      </AnchorLink>
+      </Anchor>
     );
   };
 
