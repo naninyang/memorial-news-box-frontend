@@ -51,7 +51,7 @@ export default function App({ Component, pageProps }: AppProps) {
       registInit();
     }
   }, []);
-  const noticePage = router.pathname.includes('/notice');
+  const noticePage = router.pathname.includes('/notices');
   const contactPage = router.pathname.includes('/contact-us');
   const openPage = router.pathname.includes('/open-sources');
 

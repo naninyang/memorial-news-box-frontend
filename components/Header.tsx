@@ -458,7 +458,7 @@ export default function Header() {
             </Close>
             <ol>
               <li>
-                <Anchor href="/notice" onClick={closeMenu}>
+                <Anchor href="/notices" onClick={closeMenu}>
                   안내사항
                 </Anchor>
               </li>
