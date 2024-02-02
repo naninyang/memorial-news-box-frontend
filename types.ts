@@ -234,3 +234,23 @@ export interface EditorialProps {
   editorialNumber: string;
   editorialThumbnail: string;
 }
+
+export interface NoticeData {
+  id: string;
+  idx: string;
+  platform: string;
+  subject: string;
+  description: string;
+  created: string;
+}
+
+export interface NoticeParalinkData {
+  attributes: {
+    idx: string;
+    platform: string;
+    subject: string;
+    description: string;
+    created: string;
+    createdAt: string;
+  };
+}

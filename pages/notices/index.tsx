@@ -1,14 +1,21 @@
 import { useEffect, useState } from 'react';
+import { GetServerSideProps, NextPage } from 'next';
 import styled from '@emotion/styled';
+import { NoticeData } from 'types';
 import Seo, { originTitle } from '@/components/Seo';
 import Anchor from '@/components/Anchor';
 import { images } from '@/components/images';
 import content from '@/styles/content.module.sass';
 import styles from '@/styles/pages.module.sass';
+import notice from '@/styles/notice.module.sass';
 
 type DataResponse = {
   description: string;
 };
+
+interface NoticeProps {
+  notices: NoticeData[];
+}
 
 const BackButton = styled.i({
   display: 'block',
@@ -20,7 +27,7 @@ const BackButton = styled.i({
   },
 });
 
-export default function Notice() {
+const Notices: NextPage<NoticeProps> = ({ notices }) => {
   const [data, setData] = useState<DataResponse | null>(null);
   const title = 'Notice';
 
@@ -43,6 +50,11 @@ export default function Notice() {
     const storedPage = localStorage.getItem('currentPage');
     setCurrentPage(storedPage);
   }, []);
+
+  const [noticesData, setNoticesData] = useState<NoticeData[]>([]);
+  useEffect(() => {
+    setNoticesData(notices);
+  }, [notices]);
 
   const timestamp = Date.now();
 
@@ -75,6 +87,34 @@ export default function Notice() {
           <div dangerouslySetInnerHTML={{ __html: data.description }} />
         </div>
       )}
+      <div className={notice.notices}>
+        <hr />
+        <ul>
+          {noticesData
+            .filter((notice) => notice.platform === 'memorial')
+            .map((notice) => (
+              <li key={notice.idx}>
+                <Anchor key={notice.idx} href={`/notices/${notice.idx}`} scroll={false} shallow={true}>
+                  <strong>
+                    <span>{notice.subject}</span>
+                  </strong>
+                  <time>{notice.created}</time>
+                </Anchor>
+              </li>
+            ))}
+        </ul>
+      </div>
     </main>
   );
-}
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/notices`);
+  const data = await response.json();
+
+  return {
+    props: { notices: data },
+  };
+};
+
+export default Notices;
