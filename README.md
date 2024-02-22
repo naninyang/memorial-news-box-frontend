@@ -22,7 +22,6 @@
 - Google YouTube iframe API
 - Masonry w/ Masonic
 - Perfect Scrollbar
-- pull-to-refresh (without Mutate Caching)
 - PWA
 - SWR w/ useSWRInfinite
 - Notion Client
@@ -66,6 +65,7 @@
   - 의외로 삭제하거나 비공개로 전환되는 유튜브 영상 기사가 꽤 발생함
 - NAVER 뉴스에서 기사가 언론사 요청으로 삭제된 경우 자동으로 해당 article 걸러내기
   - YouTube 영상 기사보다는 삭제되는 경향이 드물지만 없는 건 아님
+- 목록을 `SWR` 에서 `getServerSideProps`으로 변경
 
 ## Supported PWA App. Download
 

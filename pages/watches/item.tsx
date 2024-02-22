@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useMediaQuery } from 'react-responsive';
 import Modal from 'react-modal';
-import axios from 'axios';
 import PullToRefresh from 'react-simple-pull-to-refresh';
 import { Masonry } from 'masonic';
 import { YouTubeItemData } from 'types';
@@ -24,7 +23,13 @@ export function useDesktop() {
   return isDesktop;
 }
 
-export const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+export const fetcher = (url: string) =>
+  fetch(url).then((res) => {
+    if (!res.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return res.json();
+  });
 
 const getKey = (pageIndex: number, previousPageData: any) => {
   if (previousPageData && !previousPageData.length) return null;
@@ -133,9 +138,6 @@ export default function WatchesItem() {
     </div>
   );
 
-  const handleRefresh = async () => {
-    window.location.reload();
-  };
   const [columnCount, setColumnCount] = useState(1);
 
   return (
@@ -157,15 +159,13 @@ export default function WatchesItem() {
       )}
       {!isLoading && !error && (
         <div className={styles['watch-content']}>
-          <PullToRefresh onRefresh={handleRefresh}>
-            <Masonry
-              items={sheets || []}
-              columnCount={columnCount}
-              render={renderCard}
-              key={sheets.length}
-              data-index={sheets.length}
-            />
-          </PullToRefresh>
+          <Masonry
+            items={sheets || []}
+            columnCount={columnCount}
+            render={renderCard}
+            key={sheets.length}
+            data-index={sheets.length}
+          />
           {isReachingEnd !== undefined && (
             <div ref={setTarget} className={styles.ref}>
               {isReachingEnd === false && <p>뉴스를 불러오는 중입니다.</p>}

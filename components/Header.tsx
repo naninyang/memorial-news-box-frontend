@@ -35,18 +35,21 @@ const Primary = styled.div({
   display: 'flex',
   alignItems: 'center',
   gap: rem(15),
-  '& h1 a': {
-    display: 'block',
-    width: rem(94),
-    height: rem(30),
-    'body[data-theme="dark"] &': {
-      background: `url(${images.logo.light}) no-repeat 50% 50%/contain`,
-    },
-    'body &, body[data-theme="light"] &': {
-      background: `url(${images.logo.dark}) no-repeat 50% 50%/contain`,
-    },
-    '& span': {
-      ...mixIn.screenReaderOnly,
+  '& h1': {
+    '& a, & button': {
+      backgroundColor: 'transparent',
+      display: 'block',
+      width: rem(94),
+      height: rem(30),
+      'body[data-theme="dark"] &': {
+        background: `url(${images.logo.light}) no-repeat 50% 50%/contain`,
+      },
+      'body &, body[data-theme="light"] &': {
+        background: `url(${images.logo.dark}) no-repeat 50% 50%/contain`,
+      },
+      '& span': {
+        ...mixIn.screenReaderOnly,
+      },
     },
   },
   '& button': {
@@ -429,9 +432,20 @@ export default function Header() {
         )}
         <Primary>
           <h1>
-            <Anchor href="/">
-              <span>기억뉴스상자 memorial.newsbox</span>
-            </Anchor>
+            {router.pathname === '/watches' || router.pathname === '/articles' || router.pathname === '/editorials' ? (
+              <button
+                type="button"
+                onClick={() => {
+                  (window.location.reload as (cache: boolean) => void)(true);
+                }}
+              >
+                <span>기억뉴스상자 memorial.newsbox</span>
+              </button>
+            ) : (
+              <Anchor href="/">
+                <span>기억뉴스상자 memorial.newsbox</span>
+              </Anchor>
+            )}
           </h1>
           <ThemeChangeButton type="button" themeMode={themeMode === 'dark'} onClick={themeModeHandle}>
             {themeMode === 'dark' ? <span>라이트 모드로 변경</span> : <span>라이트 모드로 변경</span>}

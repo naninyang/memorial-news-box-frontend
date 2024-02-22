@@ -5,8 +5,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useMediaQuery } from 'react-responsive';
 import Modal from 'react-modal';
-import axios, { AxiosError } from 'axios';
-import PullToRefresh from 'react-simple-pull-to-refresh';
 import { NaverItemsData } from 'types';
 import { modalContainer } from '@/components/ModalStyling';
 import ArticleDetail from '@/components/Article';
@@ -29,18 +27,16 @@ function ArticlesItem() {
 
   const [waitingFor504, setWaitingFor504] = useState(false);
 
-  const fetcher = async (url: string) => {
-    try {
-      const response = await axios.get(url);
-      setWaitingFor504(false);
-      return response.data;
-    } catch (error) {
-      if ((error as AxiosError).response?.status === 504) {
+  const fetcher = (url: string) =>
+    fetch(url).then((res) => {
+      if (!res.ok) {
         setWaitingFor504(true);
+        throw new Error('Network response was not ok');
+      } else {
+        setWaitingFor504(false);
       }
-      throw error;
-    }
-  };
+      return res.json();
+    });
 
   const getKey = (pageIndex: number, previousPageData: any) => {
     if (previousPageData && !previousPageData.length) return null;
@@ -100,10 +96,6 @@ function ArticlesItem() {
     };
   }, [articleId]);
 
-  const handleRefresh = async () => {
-    window.location.reload();
-  };
-
   const isDesktop = useDesktop();
 
   return (
@@ -140,88 +132,86 @@ function ArticlesItem() {
       )}
       {!isLoading && !error && (
         <div className={styles['article-content']}>
-          <PullToRefresh onRefresh={handleRefresh}>
-            <div className={styles['article-list']}>
-              {articles.map((article: NaverItemsData) => (
-                <article key={article.idx}>
-                  <div className={styles.description}>
-                    {isDesktop ? (
-                      <Link
-                        key={article.idx}
-                        href={`/articles?articleId=${article.idx}`}
-                        as={`/article-memorial/${article.idx}`}
-                        scroll={false}
-                        shallow={true}
-                      >
-                        <p
-                          className={`${styles.comment} opinion`}
-                          dangerouslySetInnerHTML={{ __html: article.description.replace(/\n/g, '<br />') }}
-                        />
-                      </Link>
-                    ) : (
-                      <Link key={article.idx} href={`/article-memorial/${article.idx}`} scroll={false} shallow={true}>
-                        <p
-                          className={`${styles.comment} opinion`}
-                          dangerouslySetInnerHTML={{ __html: article.description.replace(/\n/g, '<br />') }}
-                        />
-                      </Link>
-                    )}
-                    <Image
-                      src={`https://cdn.dev1stud.io/memorial/${article?.thumbnail}${
-                        article?.thumbnail?.endsWith('.gif') ? '' : '.webp'
-                      }`}
-                      width={640}
-                      height={480}
-                      unoptimized
-                      priority
-                      alt=""
-                    />
-                  </div>
-                  <div className={styles.opengraph}>
-                    {article.entertainment ? (
-                      <Anchor href={`https://n.news.naver.com/entertain/article/${article.oid}/${article.aid}`}>
-                        <div className={styles['og-container']}>
-                          <img src={article.newsMetaData?.ogImage} alt="" />
-                          <div className={styles['og-info']}>
-                            <div className={styles.created}>
-                              <cite>{article.newsMetaData?.ogCreator}</cite>
-                              <time>{article.created}</time>
-                            </div>
-                            <div className={styles.summary}>
-                              <strong>{article.newsMetaData?.ogTitle}</strong>
-                              <div className={styles.description}>
-                                {article.newsMetaData?.ogDescription}
-                                ...
-                              </div>
+          <div className={styles['article-list']}>
+            {articles.map((article: NaverItemsData) => (
+              <article key={article.idx}>
+                <div className={styles.description}>
+                  {isDesktop ? (
+                    <Link
+                      key={article.idx}
+                      href={`/articles?articleId=${article.idx}`}
+                      as={`/article-memorial/${article.idx}`}
+                      scroll={false}
+                      shallow={true}
+                    >
+                      <p
+                        className={`${styles.comment} opinion`}
+                        dangerouslySetInnerHTML={{ __html: article.description.replace(/\n/g, '<br />') }}
+                      />
+                    </Link>
+                  ) : (
+                    <Link key={article.idx} href={`/article-memorial/${article.idx}`} scroll={false} shallow={true}>
+                      <p
+                        className={`${styles.comment} opinion`}
+                        dangerouslySetInnerHTML={{ __html: article.description.replace(/\n/g, '<br />') }}
+                      />
+                    </Link>
+                  )}
+                  <Image
+                    src={`https://cdn.dev1stud.io/memorial/${article?.thumbnail}${
+                      article?.thumbnail?.endsWith('.gif') ? '' : '.webp'
+                    }`}
+                    width={640}
+                    height={480}
+                    unoptimized
+                    priority
+                    alt=""
+                  />
+                </div>
+                <div className={styles.opengraph}>
+                  {article.entertainment ? (
+                    <Anchor href={`https://n.news.naver.com/entertain/article/${article.oid}/${article.aid}`}>
+                      <div className={styles['og-container']}>
+                        <img src={article.newsMetaData?.ogImage} alt="" />
+                        <div className={styles['og-info']}>
+                          <div className={styles.created}>
+                            <cite>{article.newsMetaData?.ogCreator}</cite>
+                            <time>{article.created}</time>
+                          </div>
+                          <div className={styles.summary}>
+                            <strong>{article.newsMetaData?.ogTitle}</strong>
+                            <div className={styles.description}>
+                              {article.newsMetaData?.ogDescription}
+                              ...
                             </div>
                           </div>
                         </div>
-                      </Anchor>
-                    ) : (
-                      <Anchor href={`https://n.news.naver.com/article/${article.oid}/${article.aid}`}>
-                        <div className={styles['og-container']}>
-                          <img src={article.newsMetaData?.ogImage} alt="" />
-                          <div className={styles['og-info']}>
-                            <div className={styles.created}>
-                              <cite>{article.newsMetaData?.ogCreator}</cite>
-                              <time>{article.created}</time>
-                            </div>
-                            <div className={styles.summary}>
-                              <strong>{article.newsMetaData?.ogTitle}</strong>
-                              <div className={styles.description}>
-                                {article.newsMetaData?.ogDescription}
-                                ...
-                              </div>
+                      </div>
+                    </Anchor>
+                  ) : (
+                    <Anchor href={`https://n.news.naver.com/article/${article.oid}/${article.aid}`}>
+                      <div className={styles['og-container']}>
+                        <img src={article.newsMetaData?.ogImage} alt="" />
+                        <div className={styles['og-info']}>
+                          <div className={styles.created}>
+                            <cite>{article.newsMetaData?.ogCreator}</cite>
+                            <time>{article.created}</time>
+                          </div>
+                          <div className={styles.summary}>
+                            <strong>{article.newsMetaData?.ogTitle}</strong>
+                            <div className={styles.description}>
+                              {article.newsMetaData?.ogDescription}
+                              ...
                             </div>
                           </div>
                         </div>
-                      </Anchor>
-                    )}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </PullToRefresh>
+                      </div>
+                    </Anchor>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
           {isReachingEnd !== undefined && (
             <div ref={setTarget} className={styles.ref}>
               {isReachingEnd === false && <p>뉴스를 불러오는 중입니다.</p>}

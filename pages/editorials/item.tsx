@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import useSWRInfinite from 'swr/infinite';
-import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useMediaQuery } from 'react-responsive';
 import Modal from 'react-modal';
-import axios, { AxiosError } from 'axios';
-import PullToRefresh from 'react-simple-pull-to-refresh';
 import { EditorialItemsData, EditorialProps } from 'types';
-import { modalContainer } from '@/components/ModalStyling';
-// import EditorialDetail from '@/components/Editorial';
 import Anchor from '@/components/Anchor';
 import styles from '@/styles/editorials.module.sass';
 
@@ -29,18 +23,16 @@ function EditorialsItem() {
 
   const [waitingFor504, setWaitingFor504] = useState(false);
 
-  const fetcher = async (url: string) => {
-    try {
-      const response = await axios.get(url);
-      setWaitingFor504(false);
-      return response.data;
-    } catch (error) {
-      if ((error as AxiosError).response?.status === 504) {
+  const fetcher = (url: string) =>
+    fetch(url).then((res) => {
+      if (!res.ok) {
         setWaitingFor504(true);
+        throw new Error('Network response was not ok');
+      } else {
+        setWaitingFor504(false);
       }
-      throw error;
-    }
-  };
+      return res.json();
+    });
 
   const getKey = (pageIndex: number, previousPageData: any) => {
     if (previousPageData && !previousPageData.length) return null;
@@ -99,10 +91,6 @@ function EditorialsItem() {
       window.removeEventListener('touchmove', preventScroll);
     };
   }, [editorialId]);
-
-  const handleRefresh = async () => {
-    window.location.reload();
-  };
 
   const NewspaperLink: React.FC<EditorialProps> = ({
     editorialOrg,
@@ -177,23 +165,21 @@ function EditorialsItem() {
       )}
       {!isLoading && !error && (
         <div className={styles['editorial-content']}>
-          <PullToRefresh onRefresh={handleRefresh}>
-            <div className={styles['editorial-list']}>
-              {editorials.map((editorial: EditorialItemsData) => (
-                <article key={editorial.idx}>
-                  <div className={styles.opengraph}>
-                    <NewspaperLink
-                      editorialOrg={editorial.org}
-                      editorialCreated={editorial.created}
-                      editorialTitle={editorial.title}
-                      editorialNumber={editorial.articleNumber}
-                      editorialThumbnail={editorial.thumbnail}
-                    />
-                  </div>
-                </article>
-              ))}
-            </div>
-          </PullToRefresh>
+          <div className={styles['editorial-list']}>
+            {editorials.map((editorial: EditorialItemsData) => (
+              <article key={editorial.idx}>
+                <div className={styles.opengraph}>
+                  <NewspaperLink
+                    editorialOrg={editorial.org}
+                    editorialCreated={editorial.created}
+                    editorialTitle={editorial.title}
+                    editorialNumber={editorial.articleNumber}
+                    editorialThumbnail={editorial.thumbnail}
+                  />
+                </div>
+              </article>
+            ))}
+          </div>
           {isReachingEnd !== undefined && (
             <div ref={setTarget} className={styles.ref}>
               {isReachingEnd === false && <p>만평을 불러오는 중입니다.</p>}
