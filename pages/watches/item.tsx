@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useMediaQuery } from 'react-responsive';
 import Modal from 'react-modal';
-import PullToRefresh from 'react-simple-pull-to-refresh';
 import { Masonry } from 'masonic';
 import { YouTubeItemData } from 'types';
 import { modalContainer } from '@/components/ModalStyling';
