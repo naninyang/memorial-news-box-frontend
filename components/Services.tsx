@@ -76,6 +76,14 @@ const Nav = styled.nav({
           background: `url(${images.tab.editorial.dark}) no-repeat 50% 50%/contain`,
         },
       },
+      '&[data-icon="ebenums"]': {
+        'body[data-theme="dark"] &': {
+          background: `url(${images.tab.ebenum.light}) no-repeat 50% 50%/contain`,
+        },
+        'body &, body[data-theme="light"] &': {
+          background: `url(${images.tab.ebenum.dark}) no-repeat 50% 50%/contain`,
+        },
+      },
     },
     '& span': {
       fontSize: rem(12),
@@ -104,6 +112,9 @@ const MenuItem = styled.li<{ currentRouter?: boolean }>(({ currentRouter }) => (
         background: currentRouter
           ? `url(${images.tab.editorial.active}) no-repeat 50% 50%/contain !important`
           : undefined,
+      },
+      '&[data-icon="ebenums"]': {
+        background: currentRouter ? `url(${images.tab.ebenum.active}) no-repeat 50% 50%/contain !important` : undefined,
       },
     },
   },
@@ -138,6 +149,12 @@ export default function Services() {
           <Anchor href="/editorials">
             <i data-icon="editorial" />
             <span>만평보기</span>
+          </Anchor>
+        </MenuItem>
+        <MenuItem currentRouter={router.pathname === '/ebenums' ? true : false}>
+          <Anchor href="/ebenums">
+            <i data-icon="ebenums" />
+            <span>노클노플</span>
           </Anchor>
         </MenuItem>
       </ol>

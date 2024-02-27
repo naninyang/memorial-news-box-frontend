@@ -1,4 +1,4 @@
-import { NaverItemsData, NoticeData, YouTubeItemData } from 'types';
+import { EbenumData, NaverItemsData, NoticeData, YouTubeItemData } from 'types';
 
 const formatDate = (datetime: string) => {
   const date = new Date(datetime);
@@ -75,6 +75,39 @@ export async function getNaverNewsData(start?: number, count?: number) {
   return fullData;
 }
 
+export async function getEbenumData(start?: number, count?: number) {
+  const response = await fetch(
+    `${process.env.STRAPI_URL}/api/ebenum-nol2trs?sort[0]=id:desc&pagination[page]=${start}&pagination[pageSize]=${count}`,
+    {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${process.env.STRAPI_BEARER_TOKEN}`,
+      },
+    },
+  );
+  const ebenumResponse = await response.json();
+  const filesData = ebenumResponse.data;
+  const rowsData: EbenumData[] = filesData.map((data: any) => ({
+    id: `${data.id}`,
+    idx: `${formatDate(data.attributes.createdAt)}${data.id}`,
+    subject: data.attributes.subject,
+    addr: data.attributes.addr,
+    description: data.attributes.description,
+  }));
+
+  const fullData = await Promise.all(
+    rowsData.map(async (preview) => {
+      const ebenumMetaData = await fetchPreviewMetadata(preview.addr);
+      return {
+        ...preview,
+        ebenumMetaData,
+      };
+    }),
+  );
+
+  return fullData;
+}
+
 export async function getEditorialData(start?: number, count?: number) {
   const response = await fetch(
     `${process.env.STRAPI_URL}/api/editorial-memorials?sort[0]=id:desc&pagination[page]=${start}&pagination[pageSize]=${count}`,
@@ -127,6 +160,17 @@ export async function getNoticeData() {
 async function fetchArticleMetadata(url: string) {
   try {
     const response = await fetch(`https://naver-news-opengraph.vercel.app/api/og?url=${encodeURIComponent(url)}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Failed to fetch article metadata', error);
+    return {};
+  }
+}
+
+async function fetchPreviewMetadata(url: string) {
+  try {
+    const response = await fetch(`${process.env.PREVIEW_API_URL}?url=${encodeURIComponent(url)}`);
     const data = await response.json();
     return data;
   } catch (error) {

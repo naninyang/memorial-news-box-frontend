@@ -107,6 +107,7 @@ export default function App({ Component, pageProps }: AppProps) {
             font-family: ${KingSejongInstitute.style.fontFamily}, monospace;
           }
           .opinion,
+          .noto,
           time,
           nav > ol a {
             font-family: ${fontNoto.style.fontFamily};

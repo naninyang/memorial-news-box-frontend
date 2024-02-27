@@ -82,5 +82,12 @@ export const images = {
       defaultDark: require('./tab/editorial/defaultDark.svg'),
       defaultLight: require('./tab/editorial/defaultLight.svg'),
     },
+    ebenum: {
+      active: require('./tab/ebenum/active.svg'),
+      dark: require('./tab/ebenum/dark.svg'),
+      light: require('./tab/ebenum/light.svg'),
+      defaultDark: require('./tab/ebenum/defaultDark.svg'),
+      defaultLight: require('./tab/ebenum/defaultLight.svg'),
+    },
   },
 };

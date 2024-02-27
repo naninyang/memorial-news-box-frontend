@@ -48,6 +48,14 @@ const Container = styled.h2({
         background: `url(${images.tab.editorial.defaultDark}) no-repeat 50% 50%/contain`,
       },
     },
+    '&[data-page="/ebenums"]': {
+      'body[data-theme="dark"] &': {
+        background: `url(${images.tab.ebenum.defaultLight}) no-repeat 50% 50%/contain`,
+      },
+      'body &, body[data-theme="light"] &': {
+        background: `url(${images.tab.ebenum.defaultDark}) no-repeat 50% 50%/contain`,
+      },
+    },
   },
 });
 

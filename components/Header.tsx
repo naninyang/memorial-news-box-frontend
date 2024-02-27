@@ -427,12 +427,16 @@ export default function Header() {
         {router.pathname === '/' ||
         router.pathname === '/watches' ||
         router.pathname === '/articles' ||
-        router.pathname === '/editorials' ? undefined : (
+        router.pathname === '/editorials' ||
+        router.pathname === '/ebenums' ? undefined : (
           <s />
         )}
         <Primary>
           <h1>
-            {router.pathname === '/watches' || router.pathname === '/articles' || router.pathname === '/editorials' ? (
+            {router.pathname === '/watches' ||
+            router.pathname === '/articles' ||
+            router.pathname === '/editorials' ||
+            router.pathname === '/ebenums' ? (
               <button
                 type="button"
                 onClick={() => {
